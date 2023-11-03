@@ -67,6 +67,8 @@ namespace momdp{
 		bool MDPSolution;
 		bool QMDPSolution;
 		bool FIBSolution;
+		
+		string FSCExport;
 
 		int simLen;
 		int simNum;

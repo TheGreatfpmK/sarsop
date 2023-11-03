@@ -1,0 +1,12 @@
+*.o
+
+src/polgraph
+src/pomdpconvert
+src/pomdpeval
+src/pomdpsim
+src/pomdpsol
+src/testControllerTiger
+
+src/libappl.a
+
+*.policy

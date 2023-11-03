@@ -55,11 +55,11 @@ endif
 # Compiler
 # ----------------------------------------------------------------------
 
-CC            = gcc
+CC            = gcc-9
 
-CFLAGS        = -g -w -O3 $(INCDIR) -msse2  -mfpmath=sse $(CYGWIN_CFLAGS)  #-DDEBUG_LOG_ON
+CFLAGS        = -g -w -O0 $(INCDIR) -msse2  -mfpmath=sse $(CYGWIN_CFLAGS)  #-DDEBUG_LOG_ON
 
-CXX           = g++
+CXX           = g++-9
 
 CXXFLAGS      = $(CFLAGS)
 
@@ -70,7 +70,7 @@ INCDIR	      = -I./MathLib -I./Algorithms -I./Algorithms/HSVI -I./Algorithms/SAR
 # Linker
 # ----------------------------------------------------------------------
 
-LINKER	      = g++
+LINKER	      = g++-9
 
 LDFLAGS	      = -L.
 
@@ -427,7 +427,7 @@ install:	$(TARGETS)
 		mv $(TARGET_OFSOL) $(DESTDIR)/bin/$(TARGET_OFSOL)
 		mv $(TARGET_APPL) $(DESTDIR)/lib/$(TARGET_APPL)
 
-depend:;	g++ -MM $(INCDIR) $(HDRS) $(SRCS) > $(DEPFILE)
+depend:;	g++-9 -MM $(INCDIR) $(HDRS) $(SRCS) > $(DEPFILE)
 
 #depend:;	makedepend -Y $(INCDIR) $(SRCS)
 

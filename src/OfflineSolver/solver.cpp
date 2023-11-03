@@ -45,7 +45,12 @@
 #include "FullObsUBInitializer.h"
 #include "FastInfUBInitializer.h"
 
+//#include "BuildFSC.h"
+
 #include <string.h>
+#include <exception>
+#include <list>
+#include <vector>
 
 using namespace std;
 using namespace momdp;
@@ -558,6 +563,28 @@ int main(int argc, char **argv)
 
 		//solve the problem
 		solver->solve(problem);
+
+		if (!p->FSCExport.empty()) {
+			cout << "FSC Export to file: " << p->FSCExport << endl;
+			SARSOP* sarsopSolver = (SARSOP*) solver;
+			list<SharedPointer<AlphaPlane>> alphas = sarsopSolver->lowerBoundSet->set.front()->planes;
+			cout << "Alpha count: " << alphas.size() << endl;
+			for (auto alpha_v = alphas.begin(); alpha_v != alphas.end(); ++alpha_v) {
+				//cout << alpha_v->get()->alpha->data[0] << endl;
+			}
+
+			cout << problem->observations->size() << endl;
+
+
+			//FSC fsc(alhpas , problem, 1, 0.01); 
+
+			// double V_fsc = fsc.PolicyEvaluation();
+
+			// fsc.ExportFSCNew("FSCout.fsc");
+			// fsc.PrintGraph(Pb);
+
+			// std::cout << "FSC value: " << V_fsc << std::endl;
+		}
 
 		cout << endl;
 

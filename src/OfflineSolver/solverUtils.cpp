@@ -83,6 +83,7 @@ namespace momdp{
 		MDPSolution = false;
 		QMDPSolution = false;
 		FIBSolution = false;
+		FSCExport = "";
 		useLookahead = true;
 		graphDepth = 0; // no limit
 		graphMaxBranch = 0; // no limit
@@ -133,7 +134,7 @@ namespace momdp{
 
 	bool SolverParams::parseCommandLineOption(int argc, char **argv, SolverParams& p)
 	{
-		static char shortOptions[] = "hp:t:v:fo:";
+		static char shortOptions[] = "hp:t:v:fo:e:";
 		static struct option longOptions[]={
 
 	// ***** common options
@@ -174,6 +175,8 @@ namespace momdp{
 		{ "simNum",			1, NULL, 'U' }, // Use ARG as the number of simulation runs (compulsory).
 		{ "srand",			1, NULL, 'R' }, // Set ARG as the random seed for simulation. It is the current time by default.
 		{ "output-file",		1, NULL, 'O' }, // Use ARG as the name for the output file that contains the simulation trace.
+
+		{ "export-fsc", 	1, NULL, 'e'},
 
 
 	// ***** simulate only options
@@ -323,6 +326,9 @@ namespace momdp{
 				break;
 			case 'W':
 				p.MDPSolution = true;
+				break;
+			case 'e':
+				p.FSCExport = string(optarg);
 				break;
 			case 'X':
 				p.QMDPSolution = true;
