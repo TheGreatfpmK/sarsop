@@ -100,3 +100,9 @@ SharedPointer<MOMDP> ParserSelector::loadProblem(string problemName, SolverParam
 	}
 	return problem;
 }
+
+POMDP* ParserSelector::get_parsed_pomdp(string problemName, SolverParams& solverParam) {
+	Parser* parser = new Parser();
+	POMDP* pomdpProblem = parser->parse(problemName, solverParam.useFastParser);
+	return pomdpProblem;
+}

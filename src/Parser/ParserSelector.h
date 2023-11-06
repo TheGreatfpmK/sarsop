@@ -16,6 +16,7 @@ namespace momdp
 		ParserSelector(void);
 		~ParserSelector(void);
 		static SharedPointer<MOMDP> loadProblem(string problemName, SolverParams& solverParam);
+		static POMDP* get_parsed_pomdp(string problemName, SolverParams& solverParam);
 	};
 }
 #endif

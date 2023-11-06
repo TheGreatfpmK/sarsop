@@ -45,7 +45,7 @@
 #include "FullObsUBInitializer.h"
 #include "FastInfUBInitializer.h"
 
-//#include "BuildFSC.h"
+#include "FSC.h"
 
 #include <string.h>
 #include <exception>
@@ -476,9 +476,13 @@ int main(int argc, char **argv)
 
 		GlobalResource::getInstance()->PBSolverPrePOMDPLoad();
 		SharedPointer<MOMDP> problem (NULL);
+		POMDP* pomdp_problem;
 		if(p->hardcodedProblem.length() ==0 )
 		{
 			problem = ParserSelector::loadProblem(p->problemName, *p);
+			if (!p->FSCExport.empty()) {
+				pomdp_problem = ParserSelector::get_parsed_pomdp(p->problemName, *p);
+			}
 		}
 		else
 		{
@@ -569,14 +573,14 @@ int main(int argc, char **argv)
 			SARSOP* sarsopSolver = (SARSOP*) solver;
 			list<SharedPointer<AlphaPlane>> alphas = sarsopSolver->lowerBoundSet->set.front()->planes;
 			cout << "Alpha count: " << alphas.size() << endl;
-			for (auto alpha_v = alphas.begin(); alpha_v != alphas.end(); ++alpha_v) {
-				//cout << alpha_v->get()->alpha->data[0] << endl;
-			}
+			// for (auto alpha_v = alphas.begin(); alpha_v != alphas.end(); ++alpha_v) {
+			// 	cout << alpha_v->get()->alpha->data[1] << endl;
+			// }
 
-			cout << problem->observations->size() << endl;
+			// cout << problem->observations->size() << endl;
 
 
-			//FSC fsc(alhpas , problem, 1, 0.01); 
+			FSC fsc(alphas, pomdp_problem, 1, 0.01); 
 
 			// double V_fsc = fsc.PolicyEvaluation();
 

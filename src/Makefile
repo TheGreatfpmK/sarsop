@@ -63,7 +63,7 @@ CXX           = g++-9
 
 CXXFLAGS      = $(CFLAGS)
 
-INCDIR	      = -I./MathLib -I./Algorithms -I./Algorithms/HSVI -I./Algorithms/SARSOP -I./Models/MOMDP/ -I./Models/MOMDP/CoLoc/ -I./OfflineSolver/ -I./Bounds/ -I./Core/ -I./Parser/Cassandra/ -I./Parser/Cassandra/include -I./Parser/ -I./Parser/POMDPX/ -I./Utils/ -I./Simulator/ -I./Evaluator/ -I./Controller/ $(CYGWIN_INCDIR)
+INCDIR	      = -I./MathLib -I./Algorithms -I./Algorithms/HSVI -I./Algorithms/SARSOP -I./Models/MOMDP/ -I./Models/MOMDP/CoLoc/ -I./OfflineSolver/ -I./Bounds/ -I./Core/ -I./Parser/Cassandra/ -I./Parser/Cassandra/include -I./Parser/ -I./Parser/POMDPX/ -I./Utils/ -I./Simulator/ -I./Evaluator/ -I./Controller/ -I./FSC $(CYGWIN_INCDIR)
 
 
 # ----------------------------------------------------------------------
@@ -287,7 +287,10 @@ HDRS_APPL	      = 	./PolicyGraph/PolicyGraphGenerator.h \
 					./Utils/SimulationRewardCollector.h \
 					./Parser/Cassandra/include/pomdp_spec.tab.hh \
 					./Controller/ControllerInterface.h \
-					./Controller/Controller.h
+					./Controller/Controller.h \
+					./FSC/FSC.h \
+					./FSC/Node.h \
+					./FSC/FSCUtils.h
 
 
 SRCS_APPL	      = 	./PolicyGraph/PolicyGraph.cpp \
@@ -371,7 +374,9 @@ SRCS_APPL	      = 	./PolicyGraph/PolicyGraph.cpp \
 					./Parser/Cassandra/parse_err.c \
 					./Parser/Cassandra/parse_hash.c \
 					./Parser/Cassandra/sparse-matrix.c \
-					./Controller/Controller.cpp
+					./Controller/Controller.cpp \
+					./FSC/FSC.cpp \
+					./FSC/FSCUtils.cpp
 
 
 
