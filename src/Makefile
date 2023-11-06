@@ -376,7 +376,8 @@ SRCS_APPL	      = 	./PolicyGraph/PolicyGraph.cpp \
 					./Parser/Cassandra/sparse-matrix.c \
 					./Controller/Controller.cpp \
 					./FSC/FSC.cpp \
-					./FSC/FSCUtils.cpp
+					./FSC/FSCUtils.cpp \
+					./FSC/Node.cpp
 
 
 
