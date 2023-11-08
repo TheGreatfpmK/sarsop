@@ -3,6 +3,7 @@
 #ifndef _NODE_H_
 #define _NODE_H_
 
+#include "MOMDP.h"
 
 #include <list>
 #include <map>
