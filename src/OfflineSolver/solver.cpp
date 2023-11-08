@@ -573,19 +573,12 @@ int main(int argc, char **argv)
 			SARSOP* sarsopSolver = (SARSOP*) solver;
 			list<SharedPointer<AlphaPlane>> alphas = sarsopSolver->lowerBoundSet->set.front()->planes;
 			cout << "Alpha count: " << alphas.size() << endl;
-			// for (auto alpha_v = alphas.begin(); alpha_v != alphas.end(); ++alpha_v) {
-			// 	cout << alpha_v->get()->alpha->data[1] << endl;
-			// }
-
-			// cout << problem->observations->size() << endl;
-
 
 			FSC fsc(alphas, pomdp_problem, 1, 0.01); 
 
-			// double V_fsc = fsc.PolicyEvaluation();
+			fsc.export_fsc(p->FSCExport, problem);
 
-			// fsc.ExportFSCNew("FSCout.fsc");
-			// fsc.PrintGraph(Pb);
+			// double V_fsc = fsc.PolicyEvaluation();
 
 			// std::cout << "FSC value: " << V_fsc << std::endl;
 		}

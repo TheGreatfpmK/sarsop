@@ -125,6 +125,47 @@ void FSC::produce_transition_vector(vector<vector<vector<int>>> &transition_func
 }
 
 
+void FSC::export_fsc(string filename, SharedPointer<MOMDP> pomdp) {
+    ofstream fp(filename.c_str());
+    fp << "# Transitions are tuples (current node, observation, next node, probability)\n\n";
+    fp << "action labels: ";
+    for (auto my_iter = pomdp->actions->begin(); my_iter != pomdp->actions->end(); ++my_iter) {
+        fp << my_iter.index() << " ";
+    }
+    fp << endl;
+    fp << "observation labels: ";
+    for (auto my_iter = pomdp->observations->begin(); my_iter != pomdp->observations->end(); ++my_iter) {
+        fp << my_iter.index() << " ";
+    }
+    fp << endl;
+    fp << "nodes: ";
+
+    int node_start = 0;
+    if (this->type > 0) {
+        node_start = 1;
+    }
+
+    for (int node = node_start; node < this->size; ++node) {
+        fp << this->Nodes[node].get_action() << " ";
+    }
+    fp << endl;
+
+    for (int node = 0; node < this->size; ++node) {
+        for (int observation = 0; observation < this->ObsSize; ++observation) {
+            for (int new_node = 0; new_node < this->size; ++new_node) {
+                int index = node * this->ObsSize * this->size + observation * this->size + new_node;
+                double probability = this->transition_function_vector[index];
+                if (probability > 0) {
+                    fp << node << " " << observation << " " << new_node << " " << probability << endl;
+                }
+            }
+        }
+    }
+
+    fp.close();
+}
+
+
 FSC::~FSC(void) {
     ;
 }
