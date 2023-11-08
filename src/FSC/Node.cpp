@@ -39,3 +39,8 @@ void Node::merge_belief_with_weights(belief_vector& belief, double weight_new) {
     this->weight = updated_weight;
 }
 
+
+Node::~Node(void) {
+    ;
+}
+

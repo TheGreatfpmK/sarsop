@@ -37,7 +37,7 @@ class FSC {
         int check_alpha_exists(int alpha_index);
         void produce_transition_vector(vector<vector<vector<int>>> &transition_function);
 
-        //~FSC(){};
+        ~FSC(void);
 };
 
 

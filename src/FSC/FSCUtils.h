@@ -21,5 +21,7 @@ double alpha_belief_value(AlphaPlane alpha, belief_vector& belief);
 
 double belief_action_observation_probability(belief_vector& belief, int action_index, int observation_index, POMDP* pomdp);
 
+bool belief_exists(belief_vector& belief);
+
 
 #endif

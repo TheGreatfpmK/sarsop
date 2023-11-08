@@ -19,6 +19,7 @@ AlphaPlane argmax_alpha(list<SharedPointer<AlphaPlane>> alphas, belief_vector& b
 
         double current_value = alpha_belief_value(*alpha_v->get(), belief);
         if (current_value > best_value) {
+            best_value = current_value;
             best_alpha = *alpha_v->get();
         }
         current_index++;
@@ -43,6 +44,7 @@ int argmax_alpha_index(list<SharedPointer<AlphaPlane>> alphas, belief_vector& be
 
         double current_value = alpha_belief_value(*alpha_v->get(), belief);
         if (current_value > best_value) {
+            best_value = current_value;
             best_alpha = current_index;
         }
         current_index++;
@@ -69,4 +71,15 @@ double belief_action_observation_probability(belief_vector& belief, int action_i
     pomdp->getObsProbVector(observation_probability_vector, belief, action_index);
 
     return observation_probability_vector.data[observation_index].value;
+}
+
+
+
+bool belief_exists(belief_vector& belief) {
+    double value = 0;
+    for (auto my_iter = belief.data.begin(); my_iter < belief.data.end(); ++my_iter) {
+        value += my_iter->value;
+    }
+
+    return (value > 0);
 }

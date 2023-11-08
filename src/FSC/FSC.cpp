@@ -73,13 +73,17 @@ void FSC::process_node(list<SharedPointer<AlphaPlane>> alpha_vecs, int node_inde
         belief_vector new_belief;
         pomdp->getNextBelief(new_belief, current_belief, current_action_index, observation_index);
 
+        if (!belief_exists(new_belief)) {
+            continue;
+        }
+
         AlphaPlane new_alpha = argmax_alpha(alpha_vecs, new_belief);
         int new_alpha_index = argmax_alpha_index(alpha_vecs, new_belief);
         int new_alpha_action = new_alpha.action;
         Node new_node(new_alpha, new_alpha_index, new_belief, new_alpha_action);
         new_node.set_weight(new_weight);
 
-        int alpha_vector_exists = check_alpha_exists(new_alpha_action);
+        int alpha_vector_exists = check_alpha_exists(new_alpha_index);
 
         if (alpha_vector_exists != -1) {
             transition_function[node_index][observation_index][alpha_vector_exists] = 1;
@@ -117,5 +121,10 @@ void FSC::produce_transition_vector(vector<vector<vector<int>>> &transition_func
             }
         }
     }
+}
+
+
+FSC::~FSC(void) {
+    ;
 }
 

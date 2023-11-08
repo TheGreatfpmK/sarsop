@@ -6,7 +6,10 @@ src/pomdpeval
 src/pomdpsim
 src/pomdpsol
 src/testControllerTiger
+src/FSC-jesp
 
 src/libappl.a
 
 *.policy
+*.fsc
+*.out
