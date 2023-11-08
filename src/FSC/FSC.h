@@ -11,6 +11,8 @@
 #include "Node.h"
 #include "FSCUtils.h"
 
+#include <fstream>
+
 #include <list>
 #include <map>
 #include <set>
@@ -33,11 +35,12 @@ class FSC {
 
     public:
         FSC(list<SharedPointer<AlphaPlane>> alpha_vecs, POMDP* pomdp, int type, double error_gap);
-        void process_node(list<SharedPointer<AlphaPlane>> alpha_vecs, int node_index, vector<Node> &unprocessed_nodes, POMDP* pomdp, vector<vector<vector<int>>> &transition_function);
+        void process_node(list<SharedPointer<AlphaPlane>> alpha_vecs, int node_index, vector<int> &unprocessed_nodes, POMDP* pomdp, vector<vector<vector<int>>> &transition_function);
         int check_alpha_exists(int alpha_index);
         void produce_transition_vector(vector<vector<vector<int>>> &transition_function);
+        void export_fsc(string filename, SharedPointer<MOMDP> pomdp);
 
-        //~FSC(){};
+        ~FSC(void);
 };
 
 

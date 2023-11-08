@@ -7,6 +7,8 @@
 #include "POMDP.h"
 #include "BackupAlphaPlaneMOMDP.h"
 
+#include "Node.h"
+
 #include <list>
 #include <map>
 #include <set>
@@ -20,6 +22,10 @@ int argmax_alpha_index(list<SharedPointer<AlphaPlane>> alphas, belief_vector& be
 double alpha_belief_value(AlphaPlane alpha, belief_vector& belief);
 
 double belief_action_observation_probability(belief_vector& belief, int action_index, int observation_index, POMDP* pomdp);
+
+int nodes_vector_size(vector<Node>& vec);
+
+bool belief_exists(belief_vector& belief);
 
 
 #endif
