@@ -56,10 +56,8 @@ int argmax_alpha_index(list<SharedPointer<AlphaPlane>> alphas, belief_vector& be
 
 double alpha_belief_value(AlphaPlane alpha, belief_vector& belief) {
     double current_value = 0;
-    int state_index = 0;
     for (auto belief_state = belief.data.begin(); belief_state != belief.data.end(); ++belief_state) {
-        current_value += belief_state->value * alpha.alpha->data[state_index];
-        state_index++;
+        current_value += belief_state->value * alpha.alpha->data[belief_state->index];
     }
 
     return current_value;
