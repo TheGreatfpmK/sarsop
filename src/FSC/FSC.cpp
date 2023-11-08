@@ -74,6 +74,7 @@ void FSC::process_node(list<SharedPointer<AlphaPlane>> alpha_vecs, int node_inde
         pomdp->getNextBelief(new_belief, current_belief, current_action_index, observation_index);
 
         if (!belief_exists(new_belief)) {
+            transition_function[node_index][observation_index][node_index] = 1; //self-loop
             continue;
         }
 
