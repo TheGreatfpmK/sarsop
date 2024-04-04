@@ -1,6 +1,6 @@
 # auto-generated from PRISM program
 
-discount: 0.95
+discount: 0.8
 values: reward
 states: 6554
 actions: 7
